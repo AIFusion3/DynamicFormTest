@@ -1,0 +1,233 @@
+{
+    "rows": [
+        {
+            "title": "Müşteri Bilgileri",
+            "headerStyle": {
+                "marginBottom": "0px",
+                "fontSize": "16px",
+                "color": "black",
+                "fontWeight": "bold"
+            },
+            "columns": [
+                {
+                    "fields": [
+                        {
+                            "field": "customerName",
+                            "title": "Müşteri Adı",
+                            "type": "textbox",
+                            "required": true,
+                            "placeholder": "Müşteri Adını Giriniz"
+                        },
+                        {
+                            "field": "source",
+                            "title": "Kaynak",
+                            "type": "dropdown",
+                            "placeholder": "Kaynak Seçiniz",
+                            "required": true,
+                            "options": [
+                                {
+                                    "value": "ankara",
+                                    "label": "Ankara"
+                                },
+                                {
+                                    "value": "istanbul",
+                                    "label": "İstanbul"
+                                }
+                            ]
+                        },
+                        {
+                            "field": "phone",
+                            "title": "Telefon",
+                            "required": true,
+                            "type": "maskinput",
+                            "mask": "+90 (000) 000-00-00",
+                            "placeholder": "+9"
+                        }
+                    ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "accountType",
+                            "title": "Hesap Türü",
+                            "type": "dropdown",
+                            "placeholder": "Hesap Türü Seçiniz",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/fake/accounttype"
+                        },
+                        {
+                            "field": "group",
+                            "title": "Grup",
+                            "type": "dropdown",
+                            "placeholder": "Grup Seçiniz",
+                            "required": false
+                        },
+                        {
+                            "field": "website",
+                            "title": "Web",
+                            "required": false,
+                            "type": "textbox",
+                            "placeholder": "https://"
+                        }
+                    ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "prCompany",
+                            "title": "PR Şirketi",
+                            "type": "dropdown",
+                            "required": false
+                        },
+                        {
+                            "field": "sector2",
+                            "title": "Sektör",
+                            "type": "dropdown",
+                            "required": false,
+                            "optionsUrl": "http://localhost:3001/api/fake/sectors"
+                        },
+                        {
+                            "field": "corporateEmail",
+                            "title": "Kurumsal E-Posta",
+                            "type": "textbox",
+                            "required": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Kurum Bilgileri",
+            "headerStyle": {
+                "marginBottom": "0px",
+                "fontSize": "16px",
+                "color": "black",
+                "fontWeight": "bold"
+            },
+            "columns": [
+                {
+                    "fields": [
+                        {
+                            "field": "title",
+                            "title": "Ünvan",
+                            "type": "textbox",
+                            "required": true
+                        },
+                        {
+                            "field": "city",
+                            "title": "İl",
+                            "type": "dropdown",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/fake/cities"
+                        },
+                        {
+                            "field": "district",
+                            "title": "İlçe",
+                            "type": "dropdown",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/fake/districts/{0}",
+                            "refField": "city"
+                        },
+                        {
+                            "field": "neighborhood",
+                            "title": "Mahalle",
+                            "type": "dropdown",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/fake/neighborhoods/{0}",
+                            "refField": "district"
+                        },
+                        {
+                            "field": "privacy",
+                            "title": "Gizlilik politikasını kabul ediyorum",
+                            "type": "switch",
+                            "defaultChecked": true
+                        }
+                    ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "address",
+                            "title": "Adres",
+                            "type": "textarea",
+                            "required": true,
+                            "minRows": 1,
+                            "maxRows": 4,
+                            "autosize": true
+                        },
+                        {
+                            "field": "accountingEmail",
+                            "title": "Muhasebe E-Posta",
+                            "type": "textbox",
+                            "required": false
+                        },
+                        {
+                            "field": "accountingPhone",
+                            "title": "Muhasebe Telefon",
+                            "type": "textbox",
+                            "required": false
+                        },
+                        {
+                            "field": "tags",
+                            "title": "Etiketler",
+                            "type": "multiselect",
+                            "placeholder": "Etiketleri seçiniz",
+                            "options": [
+                                {
+                                    "value": "important",
+                                    "label": "Önemli"
+                                },
+                                {
+                                    "value": "red",
+                                    "label": "Kırmızı"
+                                },
+                                {
+                                    "value": "green",
+                                    "label": "Yeşil"
+                                },
+                                {
+                                    "value": "blue",
+                                    "label": "Mavi"
+                                }
+                            ] 
+                        }
+                    ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "taxOffice",
+                            "title": "Vergi Dairesi",
+                            "type": "textbox",
+                            "required": false
+                        },
+                        {
+                            "field": "taxNumber",
+                            "title": "Vergi No",
+                            "type": "textbox",
+                            "required": false,
+                            "maxLength": 10
+                        },
+                        {
+                            "field": "amount",
+                            "title": "Tahmini bütçe",
+                            "type": "number",
+                            "required": false,
+                            "suffix": "₺",
+                            "defaultValue": 0,
+                            "thousandSeparator": ",",
+                            "decimalSeparator": "."
+                        },
+                        {
+                            "field": "department",
+                            "title": "Departman",
+                            "type": "multiselect",
+                            "placeholder": "Departman seçiniz",
+                            "optionsUrl": "http://localhost:3001/api/fake/departments"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
