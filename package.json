@@ -13,6 +13,7 @@
     "@mantine/form": "^7.16.2",
     "@mantine/hooks": "^7.16.2",
     "@mantine/modals": "^7.16.2",
+    "@mantine/notifications": "^7.16.2",
     "dynamic-form": "file:../dynamic-form",
     "next": "15.1.6",
     "react": "^19.0.0",

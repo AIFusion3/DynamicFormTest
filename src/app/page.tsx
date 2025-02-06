@@ -5,16 +5,19 @@ import DynamicForm from 'dynamic-form';
 import companyFormConfig from './settings.json';
 import { FormConfig } from 'dynamic-form';
 import { Container } from '@mantine/core';
+import '@mantine/notifications/styles.css';
 
 export default function HomePage() {
-  // Form başarıyla gönderildikten sonra çalışacak event handler
+  // Form submitted successfully event handler
   const handleSuccess = (data: any) => {
-    console.log('Form başarıyla gönderildi:', data);
-    // Burada kullanıcıya bildirim gösterme veya yönlendirme yapabilirsiniz
+    console.log('Form submitted successfully:', data);
+    // You can notify the user or redirect them here
   };
 
+  
+
   const initialData = {
-    // Müşteri Bilgileri
+    // Customer Information
     customerName: "Test Müşteri",
     source: "ankara",
     phone: "+90 (555) 123-45-67",
@@ -25,7 +28,7 @@ export default function HomePage() {
     sector2: 3,
     corporateEmail: "info@test.com",
   
-    // Kurum Bilgileri
+    // Company Information
     title: "Test A.Ş.",
     city: "34", // İstanbul
     district: "34-1", // Kadıköy
@@ -38,17 +41,18 @@ export default function HomePage() {
     taxOffice: "Test Vergi Dairesi",
     taxNumber: "1234567890",
     amount: 50000,
-    department: ["satis", "pazarlama"] // Multiselect için array
+    department: ["satis", "pazarlama"] // Multiselect for array
   };
 
   return (
     <Container size="lg" py="xl">
-      <h1>Firma Kayıt Formu</h1>
+      <h1>Company Registration Form</h1>
       <DynamicForm
         config={companyFormConfig as FormConfig}
         initialData={initialData}
-        baseUrl="https://api.ornek.com"         
-        endpoint="companies/register"           
+        useToken={true}
+        baseUrl="/api"         
+        endpoint="fake/account"           
         onSuccess={handleSuccess}
         submitButtonProps={{
           variant: 'outline',
@@ -60,6 +64,6 @@ export default function HomePage() {
           children: 'İptal'
         }}
       />
-    </Container>
+    </Container> 
   );
 }
