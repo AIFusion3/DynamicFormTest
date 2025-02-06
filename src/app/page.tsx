@@ -51,6 +51,7 @@ export default function HomePage() {
         config={companyFormConfig as FormConfig}
         initialData={initialData}
         useToken={true}
+        showDebug={false}
         baseUrl="/api"         
         endpoint="fake/account"           
         onSuccess={handleSuccess}
