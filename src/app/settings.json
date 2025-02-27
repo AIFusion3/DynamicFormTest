@@ -93,6 +93,26 @@
                             "required": false
                         }
                     ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "logo",
+                            "title": "Logo",
+                            "type": "upload",
+                            "required": false,
+                            "uploadUrl": "http://localhost:8000/api/upload/product-image-s3",
+                            "maxSize": 5242880,
+                            "acceptedFileTypes": [
+                                "image/png",
+                                "image/jpeg",
+                                "image/webp"
+                            ],
+                            "width": "100%",
+                            "height": 220,
+                            "uploadContext": "logo"
+                        }
+                    ]
                 }
             ]
         },
@@ -189,7 +209,7 @@
                                     "value": "blue",
                                     "label": "Mavi"
                                 }
-                            ] 
+                            ]
                         }
                     ]
                 },
@@ -224,6 +244,38 @@
                             "type": "multiselect",
                             "placeholder": "Departman seçiniz",
                             "optionsUrl": "http://localhost:3001/api/fake/departments"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Galeri",
+            "headerStyle": {
+                "marginBottom": "0px",
+                "fontSize": "16px",
+                "color": "black",
+                "fontWeight": "bold"
+            },
+            "columns": [
+                {
+                    "fields": [
+                        {
+                            "field": "productImages",
+                            "title": "Ürün Görseli",
+                            "type": "uploadcollection",
+                            "required": false,
+                            "uploadUrl": "http://localhost:8000/api/upload/product-image-s3",
+                            "maxSize": 5242880,
+                            "acceptedFileTypes": [
+                                "image/png",
+                                "image/jpeg",
+                                "image/webp"
+                            ],
+                            "width": 250,
+                            "height": 250,
+                            "uploadContext": "product",
+                            "maxImages": 10
                         }
                     ]
                 }

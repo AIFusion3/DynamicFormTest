@@ -18,6 +18,7 @@ export default function HomePage() {
 
   const initialData = {
     // Customer Information
+    id: 1,
     customerName: "Test Müşteri",
     source: "ankara",
     phone: "+90 (555) 123-45-67",
@@ -49,8 +50,9 @@ export default function HomePage() {
       <h1>Company Registration Form</h1>
       <DynamicForm
         config={companyFormConfig as FormConfig}
-        initialData={initialData}
+        //initialData={initialData}
         useToken={true}
+        pk_field='id'
         showDebug={false}
         baseUrl="/api"         
         endpoint="fake/account"           
@@ -60,7 +62,7 @@ export default function HomePage() {
           children: 'Kaydet'
         }}
         cancelButtonProps={{
-          variant: 'light',
+          variant: 'outline',
           color: 'red',
           children: 'İptal'
         }}
