@@ -42,6 +42,12 @@
                             "type": "maskinput",
                             "mask": "+90 (000) 000-00-00",
                             "placeholder": "+9"
+                        },
+                        {
+                            "field": "birthDate",
+                            "title": "Doğum Tarihi",
+                            "type": "date",
+                            "required": false
                         }
                     ]
                 },
@@ -68,7 +74,20 @@
                             "required": false,
                             "type": "textbox",
                             "placeholder": "https://"
-                        }
+                        },
+                        {
+                            "field": "status",
+                            "title": "Tip",
+                            "type": "segmentedcontrol",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/fake/accounttype",
+                            
+                            "color": "black",
+                            "radius": "md",
+                            "size": "sm",
+                            "fullWidth": true,
+                            "orientation": "horizontal"
+                          }
                     ]
                 },
                 {
@@ -160,8 +179,9 @@
                             "field": "privacy",
                             "title": "Gizlilik politikasını kabul ediyorum",
                             "type": "switch",
-                            "defaultChecked": true
+                            "defaultChecked": false
                         }
+                        
                     ]
                 },
                 {
@@ -188,7 +208,7 @@
                             "required": false
                         },
                         {
-                            "field": "tags",
+                            "field": "tags2",
                             "title": "Etiketler",
                             "type": "multiselect",
                             "placeholder": "Etiketleri seçiniz",
@@ -246,6 +266,18 @@
                             "optionsUrl": "http://localhost:3001/api/fake/departments"
                         }
                     ]
+                },
+                {
+                    "fields": [
+                        {
+                            "field": "categories",
+                            "title": "Categories",
+                            "type": "tree",
+                            "required": true,
+                            "optionsUrl": "http://localhost:3001/api/tree",
+                            "levelOffset": 23
+                        }
+                    ]
                 }
             ]
         },
@@ -262,7 +294,7 @@
                     "fields": [
                         {
                             "field": "productImages",
-                            "title": "Ürün Görseli",
+                            "title": "Ürün Görselleri",
                             "type": "uploadcollection",
                             "required": false,
                             "uploadUrl": "http://localhost:8000/api/upload/product-image-s3",
@@ -277,6 +309,158 @@
                             "uploadContext": "product",
                             "maxImages": 10
                         }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Ek Tanımlamalar",
+            "headerStyle": {
+                "marginBottom": "0px",
+                "fontSize": "16px",
+                "color": "black",
+                "fontWeight": "bold"
+            },
+            "columns": [
+                {
+                    "fields": [
+                        {
+                            "field": "variantdata",
+                            "title": "Varyantlar",
+                            "type": "sublistform",
+                            "buttonTitle": "Varyant Ekle",
+                            "required": true,
+                            "columns": [
+                              { "key": "color", "title": "Renk" },
+                              { "key": "size__title", "title": "Beden" },
+                              { "key": "stock", "title": "Stok" },
+                              { "key": "variantdata2", "title": "Varyantlar2", "type": "json", "subColumns": [
+                                { "key": "color2", "title": "Renk" },
+                                { "key": "size2__title", "title": "Beden" }
+                              ]}
+                            ],
+                            "subform": {
+                              "rows": [
+                                {
+                                  "columns": [
+                                    {
+                                      "fields": [
+                                        {
+                                          "field": "color",
+                                          "title": "Renk",
+                                          "type": "textbox",
+                                          "required": true
+                                        },
+                                        {
+                                            "field": "city",
+                                            "title": "İl",
+                                            "type": "dropdown",
+                                            "required": true,
+                                            "optionsUrl": "http://localhost:3001/api/fake/cities"
+                                        },
+                                        {
+                                          "field": "size",
+                                          "title": "Beden",
+                                          "type": "dropdown",
+                                          "options": [
+                                            { "value": "S", "label": "Small" },
+                                            { "value": "M", "label": "Medium" },
+                                            { "value": "L", "label": "Large" }
+                                          ],
+                                          "required": true
+                                        },
+                                        {
+                                          "field": "stock",
+                                          "title": "Stok",
+                                          "type": "number",
+                                          "required": true
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                    "title": "Özellikler2",
+                                    "headerStyle": {
+                                        "marginBottom": "0px",
+                                        "fontSize": "16px",
+                                        "color": "black",
+                                        "fontWeight": "bold"
+                                    },
+                                    "columns": [
+                                        {
+                                            "fields": [
+                                                {
+                                                    "field": "variantdata2",
+                                                    "title": "Varyantlar",
+                                                    "type": "sublistform",
+                                                    "buttonTitle": "Varyant Ekle",
+                                                    "required": true,
+                                                    "columns": [
+                                                      { "key": "color2", "title": "Renk" },
+                                                      { "key": "size2__title", "title": "Beden" }
+                                                    ],
+                                                    "subform": {
+                                                      "rows": [
+                                                        {
+                                                          "columns": [
+                                                            {
+                                                              "fields": [
+                                                                {
+                                                                  "field": "color2",
+                                                                  "title": "Renk",
+                                                                  "type": "textbox",
+                                                                  "required": true
+                                                                },
+                                                                {
+                                                                  "field": "size2",
+                                                                  "title": "Beden",
+                                                                  "type": "dropdown",
+                                                                  "options": [
+                                                                    { "value": "S", "label": "Small" },
+                                                                    { "value": "M", "label": "Medium" },
+                                                                    { "value": "L", "label": "Large" }
+                                                                  ],
+                                                                  "required": true 
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    "size": "sm"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                              ]
+                            },
+                            "size": "md"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Açıklama",
+            "headerStyle": {
+                "marginBottom": "0px",
+                "fontSize": "16px",
+                "color": "black",
+                "fontWeight": "bold"
+            },
+            "columns": [
+                {
+                    "fields": [
+                       {
+                        "field": "description",
+                        "title": "Açıklama",
+                        "type": "htmleditor",
+                        "required": true,
+                        "editorHeight": 300
+                       }
                     ]
                 }
             ]

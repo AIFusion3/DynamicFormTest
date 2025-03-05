@@ -1,11 +1,18 @@
 'use client';
 // pages/CompanyRegistrationPage.tsx
 import React from 'react';
-import DynamicForm from 'dynamic-form';
 import companyFormConfig from './settings.json';
-import { FormConfig } from 'dynamic-form';
+import DynamicForm from 'dynamic-form';
+import DynamicView from 'dynamic-form/dist/DynamicView';
+import type { FormConfig } from 'dynamic-form';
+import type { ViewConfig } from 'dynamic-form/dist/DynamicView';
+
 import { Container } from '@mantine/core';
 import '@mantine/notifications/styles.css';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/tiptap/styles.css';
 
 export default function HomePage() {
   // Form submitted successfully event handler
@@ -45,6 +52,87 @@ export default function HomePage() {
     department: ["satis", "pazarlama"] // Multiselect for array
   };
 
+  // Örnek kullanım
+const viewConfig = {
+  layout: 'vertical', // veya 'vertical'
+  fieldStyle: {
+    fontWeight: '600',
+    fontSize: '12px',
+    width: 'calc(100%)'
+  },
+  labelStyle: {
+    weight: '400',
+    size: 'sm',
+    width: '110px',
+  },
+  rows: [
+      {
+          title: 'Kişisel Bilgiler',
+          columns: [
+            {
+              span: 3,
+              fields: [
+                {
+                  field: 'photo',
+                  title: '',
+                  type: 'image',
+                  imageWidth: '100%',
+                  imageHeight: '100%'
+                }
+              ]
+            },
+            {
+              span: 5,
+              fields: [
+                  {
+                      field: 'name',
+                      title: 'Ad Soyad',
+                      type: 'text'
+                  },
+                  {
+                      field: 'birthDate',
+                      title: 'Doğum Tarihi',
+                      type: 'date'
+                  }
+              ]
+          },
+          {
+            span: 4,
+            fields: [
+                {
+                    field: 'father_name',
+                    title: 'Baba Adı',
+                    type: 'text'
+                },
+                {
+                    field: 'isok',
+                    title: 'İş Okulu',
+                    type: 'boolean'
+                }
+            ]
+        }
+              
+          ]
+      }
+      
+  ]
+};
+
+const data = {
+  name: 'Ahmet Yılmaz',
+  birthDate: '1990-01-01',
+  father_name: 'Mehmet Yılmaz',
+  mother_name: 'Ayşe Yılmaz',
+  isok: true,
+  photo: 'https://i0.shbdn.com/photos/46/30/10/12324630106rl.jpg',
+  documents: [
+      'https://example.com/doc1.jpg',
+      'https://example.com/doc2.jpg'
+  ]
+};
+
+
+
   return (
     <Container size="lg" py="xl">
       <h1>Company Registration Form</h1>
@@ -55,11 +143,12 @@ export default function HomePage() {
         pk_field='id'
         showDebug={false}
         baseUrl="/api"         
-        endpoint="fake/account"           
+        endpoint="fake/account"   
+        hiddenCancel={true}
         onSuccess={handleSuccess}
         submitButtonProps={{
           variant: 'outline',
-          children: 'Kaydet'
+          children: 'Kaydet!'
         }}
         cancelButtonProps={{
           variant: 'outline',
@@ -67,6 +156,16 @@ export default function HomePage() {
           children: 'İptal'
         }}
       />
+      
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <DynamicView config={viewConfig as ViewConfig} data={data} />
     </Container> 
   );
 }

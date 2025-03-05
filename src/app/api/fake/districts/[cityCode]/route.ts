@@ -10,7 +10,7 @@ export async function GET(request: Request, { params }: { params: { cityCode: st
       { value: "34-1", label: "Kadıköy" },
       { value: "34-2", label: "Beşiktaş" }
     ],
-    "6": [
+    "06": [
       { value: "06-1", label: "Çankaya" },
       { value: "06-2", label: "Keçiören" }
     ]
