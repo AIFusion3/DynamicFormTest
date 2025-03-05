@@ -46,7 +46,7 @@
                         {
                             "field": "birthDate",
                             "title": "Doğum Tarihi",
-                            "type": "date",
+                            "type": "datetime",
                             "required": false
                         }
                     ]
